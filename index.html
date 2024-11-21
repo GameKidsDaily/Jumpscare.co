@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump Scare!</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #jump-scare {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+    #jump-scare img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #prompt {
+      display: none;
+      z-index: 1001;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+    }
+    button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+<body>
+
+<div id="jump-scare">
+  <img src="https://via.placeholder.com/1920x1080?text=Jump+Scare!" alt="Scary Image">
+  <audio id="scare-audio" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
+</div>
+
+<div id="prompt">
+  <p>Did that scare you?</p>
+  <button onclick="handleYes()">Yes</button>
+  <button onclick="handleNo()">No</button>
+</div>
+
+<script>
+  window.onload = function() {
+    startJumpScare();
+  };
+
+  function startJumpScare() {
+    const jumpScare = document.getElementById('jump-scare');
+    const scareAudio = document.getElementById('scare-audio');
+    const prompt = document.getElementById('prompt');
+
+    // Show jump scare and play sound
+    jumpScare.style.display = 'block';
+    scareAudio.play();
+
+    // Show prompt after a delay
+    setTimeout(() => {
+      jumpScare.style.display = 'none';
+      prompt.style.display = 'block';
+    }, 3000);
+  }
+
+  function handleYes() {
+    alert("Here comes another jump scare!");
+    startJumpScare(); // Restart jump scare
+  }
+
+  function handleNo() {
+    alert("C'mon, just admit it scared you!");
+  }
+</script>
+
+</body>
+</html>
